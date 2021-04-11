@@ -1,0 +1,344 @@
+{
+  "port": 8080,
+  "protocol": "http",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/authorize",
+            "body": {
+              "username": "yes",
+              "password": "yes"
+            },
+            "method": "POST"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": "OK"
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/courts",
+            "method": "GET",
+            "query": {
+              "date": "2021-05-01",
+              "startTime": 19,
+              "endTime": 20
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "date": "2021-05-01",
+              "startTime": 19,
+              "endTime": 20,
+              "courts": [
+                {
+                  "id": 1,
+                  "court": "A",
+                  "subCourt": 0,
+                  "isAvailable": true
+                },
+                {
+                  "id": 2,
+                  "court": "A",
+                  "subCourt": 1,
+                  "isAvailable": false
+                },
+                {
+                  "id": 3,
+                  "court": "B",
+                  "subCourt": 0,
+                  "isAvailable": true
+                },
+                {
+                  "id": 4,
+                  "court": "B",
+                  "subCourt": 1,
+                  "isAvailable": false
+                },
+                {
+                  "id": 5,
+                  "court": "C",
+                  "subCourt": 0,
+                  "isAvailable": true
+                },
+                {
+                  "id": 6,
+                  "court": "C",
+                  "subCourt": 1,
+                  "isAvailable": false
+                },
+                {
+                  "id": 7,
+                  "court": "D",
+                  "subCourt": 0,
+                  "isAvailable": true
+                },
+                {
+                  "id": 8,
+                  "court": "D",
+                  "subCourt": 1,
+                  "isAvailable": false
+                },
+                {
+                  "id": 9,
+                  "court": "E",
+                  "subCourt": 0,
+                  "isAvailable": true
+                },
+                {
+                  "id": 10,
+                  "court": "E",
+                  "subCourt": 1,
+                  "isAvailable": false
+                },
+                {
+                  "id": 11,
+                  "court": "F",
+                  "subCourt": 0,
+                  "isAvailable": true
+                },
+                {
+                  "id": 12,
+                  "court": "F",
+                  "subCourt": 1,
+                  "isAvailable": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/courts",
+            "method": "GET",
+            "query": {
+              "date": "2021-04-01",
+              "startTime": 16,
+              "endTime": 20
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 400,
+            "body": "Bad Request"
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/orders",
+            "method": "POST",
+            "body": {
+              "date": "2021-05-01",
+              "startTime": 19,
+              "endTime": 20,
+              "selectedCourts": [1]
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 201,
+            "body": {
+              "orderId": 1,
+              "coupon": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/orders/1",
+            "method": "GET"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "orderId": 1,
+              "coupon": "",
+              "originalAmount": 100.03,
+              "timeDiscount": -10.01,
+              "couponDiscount": 0,
+              "amount": 90.02,
+              "courts": [
+                {
+                  "court": "A",
+                  "subCourt": 1,
+                  "periodHour": 2,
+                  "amount": 20.03
+                },
+                {
+                  "court": "A",
+                  "subCourt": 1,
+                  "periodHour": 1,
+                  "amount": 20
+                },
+                {
+                  "court": "B",
+                  "subCourt": 1,
+                  "periodHour": 1,
+                  "amount": 60
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/orders/2",
+            "method": "GET"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "orderId": 1,
+              "coupon": "",
+              "originalAmount": 100.03,
+              "timeDiscount": -10.01,
+              "couponDiscount": 0,
+              "amount": 90.02,
+              "courts": [
+                {
+                  "court": "C",
+                  "subCourt": 1,
+                  "periodHour": 2,
+                  "amount": 20.03
+                },
+                {
+                  "court": "C",
+                  "subCourt": 1,
+                  "periodHour": 1,
+                  "amount": 20
+                },
+                {
+                  "court": "D",
+                  "subCourt": 1,
+                  "periodHour": 1,
+                  "amount": 60
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/orders/1/coupon",
+            "method": "PUT",
+            "body": {
+              "coupon": "abcd"
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": {
+              "orderId": 1,
+              "coupon": "abcd",
+              "originalAmount": 100.03,
+              "timeDiscount": -10.01,
+              "couponDiscount": -10.01,
+              "amount": 80.01,
+              "courts": [
+                {
+                  "court": "A",
+                  "subCourt": 1,
+                  "periodHour": 2,
+                  "amount": 20.03
+                },
+                {
+                  "court": "A",
+                  "subCourt": 1,
+                  "periodHour": 1,
+                  "amount": 20
+                },
+                {
+                  "court": "B",
+                  "subCourt": 1,
+                  "periodHour": 1,
+                  "amount": 60
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "predicates": [
+        {
+          "matches": {
+            "path": "/api/orders/1/confirm",
+            "method": "POST"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": "OK"
+          }
+        }
+      ]
+    },
+    {
+      "responses": [
+        {
+          "is": {
+            "statusCode": 400
+          }
+        }
+      ]
+    }
+  ]
+}

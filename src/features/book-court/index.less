@@ -1,0 +1,64 @@
+.book-court-layout{
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
+.welcome-title {
+  font-size: @app-title-font-size;
+}
+
+.time-scheduler-form {
+  .ant-form-item-label {
+    padding: 0;
+    label {
+      font-size: 10px;
+      color: @app-text-color
+    }
+  }
+
+  .time-picker{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ant-picker {
+    width: 100%;
+    border-bottom: 2px solid #656cee;
+    border-radius: 4px 4px 0 0;
+    background-color: rgba(101, 108, 238, 0.1);
+  }
+}
+
+.court-selection-board{
+  .description{
+    ul {
+      color: #9695A8;
+      padding-left: 0;
+    }
+  }
+
+  .court-content-box{
+    background-color: #FFF;
+    border-radius: 10px;
+    min-height: 220px;
+    padding: 30px 10px;
+    margin-bottom: 20px;
+
+    .court-content{
+      display: grid;
+      grid-template-columns: 50% 50%;
+
+      .court-picker {
+        display: flex;
+        margin: 0 auto 20px;
+        .court-name{
+          margin-right: 10px;
+        }
+        .court{
+          display: flex;
+        }
+      }
+    }
+  }
+}

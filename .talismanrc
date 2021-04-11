@@ -1,0 +1,13 @@
+fileignoreconfig:
+- filename: src/react-app-env.d.ts
+  checksum: f0045b3f8905880e17671222a920193a34a64f59b0d5fe52d8829b8da70e50dd
+- filename: yarn.lock
+  checksum: 9967cb2fb625484de00da7ee4deaa78768c5deb6e81481ea918da8dd575641e4
+- filename: server.js
+  checksum: 89deec1a3519a2e3f1e8527d8526b0c2f6922d9fe7b8d9cd42160d407303009b
+- filename: src/features/login/login-form/index.tsx
+  checksum: 628eabdccb8d4ecdaa63cb6b5618323b0d49dd471ecae67b18ad28187d3335f4
+- filename: src/features/login/authorizeSlice.test.ts
+  checksum: b61054c87a074b82278f2ee30c7d354b600c1556028d63a3e28afd52588433ca
+- filename: src/features/book-court/bookCourtsSlice.ts
+  checksum: 22805b147fbdb28e32385680f43e7bc6158fb7bd0c49177651830e22038c8a55

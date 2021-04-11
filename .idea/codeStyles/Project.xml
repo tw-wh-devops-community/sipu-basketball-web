@@ -1,0 +1,19 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <MySQLCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
+    </MySQLCodeStyleSettings>
+    <codeStyleSettings language="JAVA">
+      <option name="WRAP_ON_TYPING" value="0" />
+    </codeStyleSettings>
+    <codeStyleSettings language="MySQL">
+      <option name="KEEP_LINE_BREAKS" value="false" />
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="yaml">
+      <option name="KEEP_LINE_BREAKS" value="false" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>

@@ -1,0 +1,46 @@
+version: 2.1
+
+jobs:
+  run-unit-test:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test
+
+  deploy-to-staging:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Deploy Main branch to Heroku
+          command: |
+            git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/sipu-basketball-web-staging.git master
+
+  deploy-to-prod:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Deploy Main branch to Heroku
+          command: |
+            git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/sipu-basketball-web.git master
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - run-unit-test
+      - deploy-to-staging:
+          requires:
+            - run-unit-test
+      - approve-deploy-prod:
+          type: approval
+          requires:
+            - deploy-to-staging
+      - deploy-to-prod:
+          requires:
+            - approve-deploy-prod
