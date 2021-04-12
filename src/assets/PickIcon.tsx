@@ -10,7 +10,6 @@ const PickIcon: FC = () => (
       </radialGradient>
     </defs>
   </svg>
-
 );
 
 export default PickIcon;
