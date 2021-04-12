@@ -79,11 +79,24 @@
   }
 
   .courts-board{
-    display: grid;
-    grid-template-columns: 50% 50%;
+    background-color: #FFF;
+    border-radius: 10px;
+    min-height: 200px;
+    padding-top: 30px;
+    margin-bottom: 30px;
 
+    .courts-board-content{
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
     .court-picker{
       display: flex;
+      margin: 10px auto;
+
+      .court{
+        margin-left: 5px;
+        display: flex;
+      }
     }
   }
 }

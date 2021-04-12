@@ -16,16 +16,19 @@ const CourtPicker:React.FC<CourtPickerProps> = ({ courtName, courts }) => {
   return (
     <div className="court-picker">
       <h4>{courtName}</h4>
-      <LeftCourt
-        id={courts[CourtSubType.LEFT].id}
-        disabled={!courts[CourtSubType.LEFT].isAvailable}
-        selected={selectedCourts.includes(courts[CourtSubType.LEFT].id)}
-      />
-      <RightCourt
-        id={courts[CourtSubType.RIGHT].id}
-        disabled={!courts[CourtSubType.RIGHT].isAvailable}
-        selected={selectedCourts.includes(courts[CourtSubType.RIGHT].id)}
-      />
+      <div className="court">
+        <LeftCourt
+          id={courts[CourtSubType.LEFT].id}
+          disabled={!courts[CourtSubType.LEFT].isAvailable}
+          selected={selectedCourts.includes(courts[CourtSubType.LEFT].id)}
+        />
+        <RightCourt
+          id={courts[CourtSubType.RIGHT].id}
+          disabled={!courts[CourtSubType.RIGHT].isAvailable}
+          selected={selectedCourts.includes(courts[CourtSubType.RIGHT].id)}
+        />
+      </div>
+
     </div>
   );
 };

@@ -9,7 +9,8 @@ const CourtsBoard:React.FC = () => {
 
   return (
     <div className="courts-board">
-      {
+      <div className="courts-board-content">
+        {
           searchedCourts && Object.keys(searchedCourts.courts)
             .map((courtName) => (
               <CourtPicker
@@ -19,6 +20,8 @@ const CourtsBoard:React.FC = () => {
               />
             ))
         }
+      </div>
+
       {!searchedCourts && <Empty />}
     </div>
   );
