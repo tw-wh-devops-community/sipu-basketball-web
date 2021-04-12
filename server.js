@@ -57,19 +57,7 @@ app.use(cookieSession({
 }))
 
 app.use(simpleLogger)
-app.use(loginRequired)
-
-app.post('/api/authorize', createProxyMiddleware({
-  ...backendConfig,
-  onProxyRes: (proxyRes, req, res) => {
-    if (proxyRes.statusCode === 200) {
-      req.session = {
-        username: req.body.username,
-        expire: Date.now() + sessionAge,
-      }
-    }
-  },
-}))
+// app.use(loginRequired)
 
 app.use('/api', createProxyMiddleware({
   ...backendConfig,
@@ -84,11 +72,24 @@ app.use('/api', createProxyMiddleware({
     }
 
     if (contentType.includes('application/json') ||
-      contentType.includes('application/x-www-form-urlencoded')) {
+        contentType.includes('application/x-www-form-urlencoded')) {
       writeBody(JSON.stringify(req.body))
     }
   },
 }))
+
+app.post('/api/authorize', createProxyMiddleware({
+  ...backendConfig,
+  onProxyRes: (proxyRes, req, res) => {
+    if (proxyRes.statusCode === 200) {
+      req.session = {
+        username: req.body.username,
+        expire: Date.now() + sessionAge,
+      }
+    }
+  },
+}))
+
 
 
 app.use(express.static(path.join(__dirname, './build')))
