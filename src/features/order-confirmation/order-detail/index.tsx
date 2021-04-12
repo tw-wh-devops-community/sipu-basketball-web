@@ -12,7 +12,7 @@ interface Props {
 }
 
 const OrderDetail: React.FC<Props> = ({ courts }:Props) => (
-  <Card>
+  <Card className="order-detail-card">
     <h4>
       合计场地数：
       {courts.length}

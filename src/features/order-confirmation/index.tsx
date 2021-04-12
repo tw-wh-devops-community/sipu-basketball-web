@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Spin } from 'antd';
+import { Space, Spin } from 'antd';
 import OrderDetail from './order-detail';
 import Payment from './payment';
 import ButtonContainer from './button-container';

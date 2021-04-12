@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.less';
 import { Card, Divider } from 'antd';
+import { SmileFilled } from '@ant-design/icons';
 // import CouponPopup from '../coupon-popup';
 
 interface Props {
@@ -14,7 +15,8 @@ const Payment: React.FC<Props> = ({
   originalAmount, timeDiscount, couponDiscount, amount,
 }:Props) => (
   <div className="amount-payment">
-    <div>
+    <div className="payment-title">
+      <SmileFilled className="payment-icon" />
       <span>预约订单</span>
     </div>
     <Card>
@@ -42,6 +44,7 @@ const Payment: React.FC<Props> = ({
           </span>
         </li>
       </ul>
+      <Divider type="horizontal" dashed />
       <div className="total-amount">
         <span>总金额</span>
         <span>
