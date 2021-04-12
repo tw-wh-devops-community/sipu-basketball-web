@@ -25,7 +25,7 @@ const Password = () => (
       size="large"
       type="password"
       placeholder="密码"
-      iconRender={(visible) => (visible ? <EyeFilled style={{ color: '#39C8C2' }} /> : <EyeFilled />)}
+      iconRender={(visible) => (visible ? <EyeFilled style={{ color: '#FBA657' }} /> : <EyeFilled />)}
     />
   </Form.Item>
 );
