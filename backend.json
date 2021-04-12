@@ -203,14 +203,8 @@
                   "amount": 20.03
                 },
                 {
-                  "court": "A",
-                  "subCourt": 1,
-                  "periodHour": 1,
-                  "amount": 20
-                },
-                {
                   "court": "B",
-                  "subCourt": 1,
+                  "subCourt": null,
                   "periodHour": 1,
                   "amount": 60
                 }
