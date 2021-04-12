@@ -12,7 +12,7 @@ export enum CourtSubType {
 }
 
 export interface CourtType {
-  id: string,
+  id: number,
   court: string,
   subCourt: CourtSubType,
   isAvailable: boolean

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import courtsService, { CourtType, QueryType } from './service';
 import { RootState } from '../../app/store';
 
@@ -17,12 +17,14 @@ export interface BookCourtsState {
   loading: boolean;
   queryCourtsError: string | undefined;
   searchedCourts: CourtsStateDataType | undefined;
+  selectedCourts: number[]
 }
 
 export const initialState: BookCourtsState = {
   loading: false,
   queryCourtsError: undefined,
   searchedCourts: undefined,
+  selectedCourts: [],
 };
 
 const queryCourts = createAsyncThunk('courts/queryCourts', async (query: QueryType) => courtsService.queryCourts(query));
@@ -30,7 +32,15 @@ const queryCourts = createAsyncThunk('courts/queryCourts', async (query: QueryTy
 export const bookCourtsSlice = createSlice({
   name: 'bookCourtsState',
   initialState,
-  reducers: {},
+  reducers: {
+    changeSelectedSubBoard: (state, action:PayloadAction<number>) => {
+      if (state.selectedCourts.includes(action.payload)) {
+        state.selectedCourts = state.selectedCourts.filter((courtId) => courtId !== action.payload);
+      } else {
+        state.selectedCourts.push(action.payload);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(queryCourts.pending, (state) => {
@@ -62,6 +72,7 @@ export const bookCourtsSlice = createSlice({
 
 export const courtsActionCreators = {
   queryCourts,
+  changeSelectedSubBoard: bookCourtsSlice.actions.changeSelectedSubBoard,
 };
 
 export const selectCourts = (state: RootState) => state.bookCourtsState;
