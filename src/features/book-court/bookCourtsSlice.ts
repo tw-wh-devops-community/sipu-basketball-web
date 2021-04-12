@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import courtsService, { CourtType, QueryType } from './service';
+import courtsService, { BookCourtsRequestType, CourtType, QueryType } from './service';
 import { RootState } from '../../app/store';
 
 export type Courts = {
@@ -16,18 +16,26 @@ interface CourtsStateDataType {
 export interface BookCourtsState {
   loading: boolean;
   queryCourtsError: string | undefined;
+  bookCourtsError: string | undefined;
   searchedCourts: CourtsStateDataType | undefined;
-  selectedCourts: number[]
+  selectedCourts: number[],
+  bookCourtsOrder: {
+    orderId: number;
+  } | undefined
 }
 
 export const initialState: BookCourtsState = {
   loading: false,
   queryCourtsError: undefined,
+  bookCourtsError: undefined,
   searchedCourts: undefined,
   selectedCourts: [],
+  bookCourtsOrder: undefined,
 };
 
 const queryCourts = createAsyncThunk('courts/queryCourts', async (query: QueryType) => courtsService.queryCourts(query));
+
+const bookCourts = createAsyncThunk('courts/bookCourts', async (body: BookCourtsRequestType) => courtsService.bookCourts(body));
 
 export const bookCourtsSlice = createSlice({
   name: 'bookCourtsState',
@@ -66,12 +74,29 @@ export const bookCourtsSlice = createSlice({
         state.loading = false;
         state.queryCourtsError = action.error.message;
         state.searchedCourts = undefined;
+      })
+      .addCase(bookCourts.pending, (state) => {
+        state.loading = true;
+        state.bookCourtsError = undefined;
+        state.bookCourtsOrder = undefined;
+      })
+      .addCase(bookCourts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.queryCourtsError = undefined;
+        // @ts-ignore
+        state.bookCourtsOrder = action.payload;
+      })
+      .addCase(bookCourts.rejected, (state, action) => {
+        state.loading = false;
+        state.bookCourtsError = action.error.message;
+        state.bookCourtsOrder = undefined;
       });
   },
 });
 
 export const courtsActionCreators = {
   queryCourts,
+  bookCourts,
   changeSelectedSubBoard: bookCourtsSlice.actions.changeSelectedSubBoard,
 };
 

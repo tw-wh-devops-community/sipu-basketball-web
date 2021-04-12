@@ -29,12 +29,16 @@ export interface BookCourtsRequestType {
   date: string,
   startTime: number,
   endTime: number,
-  selectedCourts: string[]
+  selectedCourts: number[]
 }
 
 class BookCourtService extends HttpClient {
   async queryCourts(queryTime: QueryType): Promise<SearchedCourtsType> {
     return this.instance.get('/api/courts', { params: queryTime }).then((res) => res.data);
+  }
+
+  async bookCourts(bookCourtsBody: BookCourtsRequestType): Promise<SearchedCourtsType> {
+    return this.instance.post('/api/orders', bookCourtsBody).then((res) => res.data);
   }
 }
 
