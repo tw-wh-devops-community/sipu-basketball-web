@@ -83,7 +83,6 @@ export const bookCourtsSlice = createSlice({
       .addCase(bookCourts.fulfilled, (state, action) => {
         state.loading = false;
         state.queryCourtsError = undefined;
-        // @ts-ignore
         state.bookCourtsOrder = action.payload;
       })
       .addCase(bookCourts.rejected, (state, action) => {

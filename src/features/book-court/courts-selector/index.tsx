@@ -5,11 +5,11 @@ import CourtsBoard from './courts-board';
 import ConfirmButton from './courts-board/ConfirmButton';
 import { useTypedSelector } from '../../../app/hooks/useTypedSelector';
 import { selectCourts } from '../bookCourtsSlice';
-import { useBookCourtsActions } from '../bookCourtsHooks';
+import { useBookCourtsActions, useHandelResponse } from '../bookCourtsHooks';
 
 const CourtSelector: React.FC = () => {
   const { searchedCourts, selectedCourts } = useTypedSelector(selectCourts);
-
+  useHandelResponse();
   const { bookCourts } = useBookCourtsActions();
 
   const onSubmit = () => {

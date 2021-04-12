@@ -32,12 +32,16 @@ export interface BookCourtsRequestType {
   selectedCourts: number[]
 }
 
+export interface BookCourtsResponseType {
+  orderId: number
+}
+
 class BookCourtService extends HttpClient {
   async queryCourts(queryTime: QueryType): Promise<SearchedCourtsType> {
     return this.instance.get('/api/courts', { params: queryTime }).then((res) => res.data);
   }
 
-  async bookCourts(bookCourtsBody: BookCourtsRequestType): Promise<SearchedCourtsType> {
+  async bookCourts(bookCourtsBody: BookCourtsRequestType): Promise<BookCourtsResponseType> {
     return this.instance.post('/api/orders', bookCourtsBody).then((res) => res.data);
   }
 }
